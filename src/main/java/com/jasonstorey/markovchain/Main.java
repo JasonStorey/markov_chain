@@ -10,6 +10,6 @@ public class Main {
         markovChain.setSeparator(",");
         markovChain.learn("A,B,C,D,E,F,G,A,B,C,D,E,F,G,A,B,C,D,E,F,G");
         markovChain.setSeparator(" ");
-        System.out.println(markovChain.ask("a"));
+        System.out.println(markovChain.ask());
     }
 }

@@ -41,7 +41,7 @@ public class MarkovChain {
     }
 
     public String ask(String seed) {
-        return getChain(seed.toLowerCase(), "", MAX_CHAIN_LENGTH);
+        return (seed + separator + getChain(seed.toLowerCase(), "", MAX_CHAIN_LENGTH)).trim();
     }
 
     private String getChain(String currentState, String chain, int maxChainLength) {
