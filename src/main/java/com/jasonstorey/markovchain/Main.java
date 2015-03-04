@@ -8,8 +8,8 @@ public class Main {
         markovChain.learn("A text is a hard thing to learn");
 
         markovChain.setSeparator(",");
-        markovChain.learn("A,B,C,D,E,F,G");
+        markovChain.learn("A,B,C,D,E,F,G,A,B,C,D,E,F,G,A,B,C,D,E,F,G");
         markovChain.setSeparator(" ");
-        System.out.println(markovChain.ask());
+        System.out.println(markovChain.ask("a"));
     }
 }

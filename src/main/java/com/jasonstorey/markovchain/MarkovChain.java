@@ -5,6 +5,7 @@ import java.util.*;
 public class MarkovChain {
     private HashMap<String, List<String>> memory;
     private String separator;
+    private final int MAX_CHAIN_LENGTH = 100;
 
     public MarkovChain() {
         this.memory = new HashMap<>();
@@ -17,7 +18,7 @@ public class MarkovChain {
         ListIterator iterator = words.listIterator();
 
         while(iterator.hasNext()) {
-            String key = null;
+            String key = "";
 
             if(iterator.hasPrevious()) {
                 key = words.get(iterator.previousIndex());
@@ -36,17 +37,17 @@ public class MarkovChain {
     }
 
     public String ask() {
-        return ask(null);
+        return ask("");
     }
 
     public String ask(String seed) {
-        return getChain(seed, "");
+        return getChain(seed.toLowerCase(), "", MAX_CHAIN_LENGTH);
     }
 
-    private String getChain(String currentState, String chain) {
+    private String getChain(String currentState, String chain, int maxChainLength) {
         List<String> nextStates = memory.getOrDefault(currentState, new ArrayList<>());
 
-        if(nextStates.isEmpty()) {
+        if(nextStates.isEmpty() || maxChainLength == 0) {
             return chain;
         }
 
@@ -54,7 +55,7 @@ public class MarkovChain {
         String next = nextStates.get(randomInt);
         chain = chain.concat(next + separator);
 
-        return getChain(next, chain);
+        return getChain(next, chain, maxChainLength - 1);
     }
 
     public void setSeparator(String separator) {
