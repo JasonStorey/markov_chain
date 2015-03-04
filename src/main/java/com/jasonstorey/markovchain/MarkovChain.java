@@ -3,14 +3,16 @@ package com.jasonstorey.markovchain;
 import java.util.*;
 
 public class MarkovChain {
-    public HashMap<String, List<String>> memory;
+    private HashMap<String, List<String>> memory;
+    private String separator;
 
     public MarkovChain() {
         this.memory = new HashMap<>();
+        this.separator = " ";
     }
 
     public void learn(String txt) {
-        List<String> words = Arrays.asList(txt.split(" "));
+        List<String> words = Arrays.asList(txt.split(separator));
 
         ListIterator iterator = words.listIterator();
 
@@ -50,8 +52,12 @@ public class MarkovChain {
 
         int randomInt = new Random().nextInt(nextStates.size());
         String next = nextStates.get(randomInt);
-        chain = chain.concat(next + " ");
+        chain = chain.concat(next + separator);
 
         return getChain(next, chain);
+    }
+
+    public void setSeparator(String separator) {
+        this.separator = separator;
     }
 }
