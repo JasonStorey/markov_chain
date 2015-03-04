@@ -12,7 +12,7 @@ public class MarkovChain {
     }
 
     public void learn(String txt) {
-        List<String> words = Arrays.asList(txt.split(separator));
+        List<String> words = Arrays.asList(txt.toLowerCase().split(separator));
 
         ListIterator iterator = words.listIterator();
 

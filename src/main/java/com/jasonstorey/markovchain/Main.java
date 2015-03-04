@@ -5,7 +5,7 @@ public class Main {
         MarkovChain markovChain = new MarkovChain();
         markovChain.learn("Some text to learn");
         markovChain.learn("Some new text to learn");
-        markovChain.learn("A text is hard to learn");
+        markovChain.learn("A text is a hard thing to learn");
 
         markovChain.setSeparator(",");
         markovChain.learn("A,B,C,D,E,F,G");
