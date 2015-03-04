@@ -23,8 +23,6 @@ public class MarkovChain {
 
             commitToMemory(key, (String) iterator.next());
         }
-
-        System.out.println(memory);
     }
 
     private void commitToMemory(String key, String word) {
@@ -33,5 +31,27 @@ public class MarkovChain {
         }
 
         memory.get(key).add(word);
+    }
+
+    public String ask() {
+        return ask(null);
+    }
+
+    public String ask(String seed) {
+        return getChain(seed, "");
+    }
+
+    private String getChain(String currentState, String chain) {
+        List<String> nextStates = memory.getOrDefault(currentState, new ArrayList<>());
+
+        if(nextStates.isEmpty()) {
+            return chain;
+        }
+
+        int randomInt = new Random().nextInt(nextStates.size());
+        String next = nextStates.get(randomInt);
+        chain = chain.concat(next + " ");
+
+        return getChain(next, chain);
     }
 }
